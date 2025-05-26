@@ -1,27 +1,120 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TE AMO</title>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Astromelia para Adriana</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #fff0f5;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: 'Segoe UI', cursive;
+    }
+
+    #flower-container {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      transform: scale(0);
+      transition: transform 1s ease-in-out;
+    }
+
+    .petal {
+      position: absolute;
+      width: 80px;
+      height: 150px;
+      background: radial-gradient(circle at 50% 30%, #ffb6c1, #ff69b4);
+      border-radius: 50% 50% 0 0;
+      transform-origin: bottom center;
+      opacity: 0;
+      animation: grow 1s ease-in-out forwards;
+    }
+
+    @keyframes grow {
+      0% {
+        transform: scale(0) rotate(0deg);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1) rotate(var(--angle));
+        opacity: 1;
+      }
+    }
+
+    #message {
+      position: absolute;
+      color: #c2185b;
+      font-size: 1.6em;
+      text-align: center;
+      opacity: 0;
+      max-width: 80%;
+      transition: opacity 1s ease-in-out;
+    }
+  </style>
 </head>
 <body>
-    <button class="btn">❤<span class="per">I LOVE YOU 😁</span></button>
-    <div class="contenedor">
-        <p>¿QUIERES SER MI NOVIA?</p>
 
-        <div>
-            <img src="img/gif.gif">
-        </div>
+<div id="flower-container"></div>
+<div id="message">TE AMO MI LENGUA PEQUEÑITA - CIELO ADRIANA</div>
 
-       
-        <button class="btn1" id="yesBtn">SI</button>
-        <button class="btn1" id="noBtn">NO</button>
+<script>
+  const flowerContainer = document.getElementById('flower-container');
+  const message = document.getElementById('message');
+  let petalsDrawn = false;
+  let showingMessage = false;
 
-    </div>
-    <script src="app.js"></script>
+  const createPetals = () => {
+    flowerContainer.innerHTML = '';
+    const petalCount = 8;
+    for (let i = 0; i < petalCount; i++) {
+      const petal = document.createElement('div');
+      petal.classList.add('petal');
+      const angle = (360 / petalCount) * i;
+      petal.style.setProperty('--angle', `${angle}deg`);
+      petal.style.transform = `rotate(${angle}deg) translateY(-50%) scale(0)`;
+      petal.style.animationDelay = `${i * 0.2}s`;
+      flowerContainer.appendChild(petal);
+    }
+  };
+
+  const showFlower = () => {
+    flowerContainer.style.transform = 'scale(1)';
+    const petals = flowerContainer.querySelectorAll('.petal');
+    petals.forEach(p => {
+      p.style.animation = 'grow 1s ease-in-out forwards';
+    });
+  };
+
+  const hideFlower = () => {
+    flowerContainer.style.transform = 'scale(0)';
+    setTimeout(() => {
+      flowerContainer.innerHTML = '';
+    }, 1000);
+  };
+
+  const toggleScene = () => {
+    if (!petalsDrawn) {
+      createPetals();
+      showFlower();
+      petalsDrawn = true;
+    } else if (!showingMessage) {
+      hideFlower();
+      message.style.opacity = 1;
+      showingMessage = true;
+    } else {
+      message.style.opacity = 0;
+      petalsDrawn = false;
+      showingMessage = false;
+    }
+  };
+
+  document.body.addEventListener('click', toggleScene);
+</script>
+
 </body>
 </html>
