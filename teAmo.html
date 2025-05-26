@@ -1,27 +1,99 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TE AMO</title>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <button class="btn">❤<span class="per">I LOVE YOU 😁</span></button>
-    <div class="contenedor">
-        <p>¿QUIERES SER MI NOVIA?</p>
+  <meta charset="UTF-8">
+  <title>Poema de Amor</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: linear-gradient(to bottom, #ffe6f0, #fff0f5);
+      font-family: 'Segoe UI', cursive;
+      position: relative;
+    }
 
-        <div>
-            <img src="img/gif.gif">
-        </div>
+    #cupido {
+      position: absolute;
+      top: 50px;
+      left: 30px;
+      width: 120px;
+      z-index: 10;
+      transition: transform 1s ease-in-out;
+    }
 
-       
-        <button class="btn1" id="yesBtn">SI</button>
-        <button class="btn1" id="noBtn">NO</button>
+    #arrow {
+      position: absolute;
+      width: 80px;
+      top: 100px;
+      left: 120px;
+      opacity: 0;
+      transition: all 1.2s ease-in-out;
+    }
 
-    </div>
-    <script src="app.js"></script>
-</body>
-</html>
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: red;
+      transform: rotate(45deg);
+      animation: floatUp 2s ease-out forwards;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: red;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes floatUp {
+      to {
+        transform: translateY(-150px) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    .raindrop {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(45deg);
+      opacity: 0.9;
+      animation: fall 4s linear infinite;
+    }
+
+    .raindrop::before,
+    .raindrop::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: red;
+      border-radius: 50%;
+    }
+
+    .raindrop::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .raindrop::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes fall
