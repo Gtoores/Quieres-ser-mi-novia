@@ -2,30 +2,43 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Poema de Amor</title>
+  <title>Animación Romántica</title>
   <style>
-    body {
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
       overflow: hidden;
-      background: linear-gradient(to bottom, #ffe6f0, #fff0f5);
+      background: radial-gradient(circle at top, #ffe0f0, #fff0f5);
       font-family: 'Segoe UI', cursive;
+      position: relative;
     }
 
     #cupido {
       position: absolute;
-      top: 50px;
-      left: 30px;
+      top: 20%;
+      left: -150px;
       width: 120px;
       z-index: 10;
-      transition: transform 1s ease-in-out;
+      animation: flyIn 3s ease-in-out forwards;
+    }
+
+    @keyframes flyIn {
+      to {
+        left: 50px;
+      }
     }
 
     #arrow {
       position: absolute;
-      width: 80px;
-      top: 100px;
-      left: 120px;
+      width: 60px;
+      top: 120px;
+      left: 100px;
       opacity: 0;
+      z-index: 9;
       transition: all 1.2s ease-in-out;
     }
 
@@ -35,6 +48,7 @@
       height: 20px;
       background-color: red;
       transform: rotate(45deg);
+      opacity: 0.8;
     }
 
     .heart::before, .heart::after,
@@ -51,18 +65,17 @@
     .heart::after, .raindrop::after { top: 0; left: -10px; }
 
     .heart {
-      animation: floatUp 2s ease-out forwards;
+      animation: floatUp 1.5s ease-out forwards;
     }
 
     @keyframes floatUp {
       to {
-        transform: translateY(-150px) scale(1.5);
+        transform: translateY(-150px) scale(1.4);
         opacity: 0;
       }
     }
 
     .raindrop {
-      opacity: 0.9;
       animation: fall 4s linear infinite;
     }
 
@@ -82,27 +95,37 @@
       bottom: 10%;
       width: 100%;
       text-align: center;
-      font-size: 1.5em;
+      font-size: 1.6em;
       color: #c2185b;
       opacity: 0;
       transition: opacity 2s ease-in;
       padding: 0 20px;
     }
+
+    #final-message {
+      margin-top: 20px;
+      font-size: 2.4em;
+      font-weight: bold;
+      color: #e91e63;
+      text-shadow: 1px 1px 3px #880e4f;
+      font-family: 'Segoe UI', cursive;
+    }
   </style>
 </head>
 <body>
 
-<!-- Cupido y flecha -->
 <img id="cupido" src="https://cdn-icons-png.flaticon.com/512/2284/2284866.png" alt="Cupido">
 <img id="arrow" src="https://cdn-icons-png.flaticon.com/512/753/753345.png" alt="Flecha">
 
-<!-- Poema final -->
 <div id="poem">
   <p>¿Qué es poesía?, dices mientras clavas<br>
      en mi pupila tu pupila azul.<br>
      ¿Qué es poesía? ¿Y tú me lo preguntas?<br>
      Poesía... eres tú.</p>
   <p><em>— Gustavo Adolfo Bécquer</em></p>
+
+  <!-- Texto adicional final -->
+  <div id="final-message">TE AMO CIELO ADRIANA, MI LENGUA PEQUEÑITA</div>
 </div>
 
 <script>
@@ -116,31 +139,30 @@
     if (step === 1) {
       // Lanzamiento de flecha
       arrow.style.opacity = 1;
-      arrow.style.transform = "translate(600px, -100px) rotate(20deg)";
+      arrow.style.transform = "translate(700px, -80px) rotate(30deg) scale(1.2)";
     }
 
     else if (step === 2) {
       // Explosión de corazones
-      for (let i = 0; i < 20; i++) {
+      for (let i = 0; i < 30; i++) {
         const heart = document.createElement("div");
         heart.className = "heart";
-        heart.style.left = `${600 + Math.random() * 100 - 50}px`;
-        heart.style.top = `${150 + Math.random() * 30}px`;
+        heart.style.left = `${700 + Math.random() * 100 - 50}px`;
+        heart.style.top = `${100 + Math.random() * 30}px`;
         document.body.appendChild(heart);
         setTimeout(() => heart.remove(), 2000);
       }
     }
 
     else if (step === 3) {
-      // Lluvia de corazones
-      for (let i = 0; i < 100; i++) {
+      // Lluvia de corazones y poema
+      for (let i = 0; i < 150; i++) {
         const drop = document.createElement("div");
         drop.className = "raindrop";
         drop.style.left = `${Math.random() * window.innerWidth}px`;
         drop.style.animationDelay = `${Math.random() * 4}s`;
         document.body.appendChild(drop);
       }
-      // Mostrar poema
       poem.style.opacity = 1;
     }
   });
