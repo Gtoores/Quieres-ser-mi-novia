@@ -1,27 +1,68 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TE AMO</title>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Te Amo Infinito</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom right, #ffcccc, #ffe6e6);
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    h1 {
+      font-size: 3em;
+      color: #d6336c;
+      margin-bottom: 20px;
+      animation: pulse 2s infinite;
+    }
+
+    .infinity {
+      width: 200px;
+      height: 100px;
+      position: relative;
+    }
+
+    .infinity::before,
+    .infinity::after {
+      content: "";
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      border: 6px solid #ff3366;
+      border-radius: 50%;
+      animation: rotate 5s linear infinite;
+    }
+
+    .infinity::before {
+      left: 0;
+      transform: rotate(0deg);
+    }
+
+    .infinity::after {
+      right: 0;
+      transform: rotate(0deg);
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+  </style>
 </head>
 <body>
-    <button class="btn">❤<span class="per">I LOVE YOU 😁</span></button>
-    <div class="contenedor">
-        <p>¿QUIERES SER MI NOVIA?</p>
-
-        <div>
-            <img src="img/gif.gif">
-        </div>
-
-       
-        <button class="btn1" id="yesBtn">SI</button>
-        <button class="btn1" id="noBtn">NO</button>
-
-    </div>
-    <script src="app.js"></script>
+  <h1>Te Amo Infinito</h1>
+  <div class="infinity"></div>
 </body>
 </html>
