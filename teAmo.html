@@ -1,27 +1,95 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TE AMO</title>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Astromelia para Adriana</title>
+  <style>
+    body {
+      margin: 0;
+      background: radial-gradient(circle at center, #fff0f5 0%, #ffe6f0 100%);
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      font-family: 'Segoe UI', cursive;
+    }
+
+    .container {
+      position: relative;
+      width: 300px;
+      height: 400px;
+      cursor: pointer;
+    }
+
+    .petal {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transform: scale(0);
+      transition: all 0.8s ease-out;
+    }
+
+    .petal.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    #message {
+      margin-top: 30px;
+      font-size: 1.8em;
+      color: #c2185b;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+    }
+  </style>
 </head>
 <body>
-    <button class="btn">❤<span class="per">I LOVE YOU 😁</span></button>
-    <div class="contenedor">
-        <p>¿QUIERES SER MI NOVIA?</p>
 
-        <div>
-            <img src="img/gif.gif">
-        </div>
+<div class="container" id="flowerContainer">
+  <!-- Cada pétalo usa la imagen recortada, pero aparecerá uno por uno -->
+  <img src="cd1fd06b-636d-4d90-934a-1afd2ae45ca7.png" class="petal" style="z-index: 1;">
+  <img src="cd1fd06b-636d-4d90-934a-1afd2ae45ca7.png" class="petal" style="z-index: 2; transform: rotate(15deg) scale(0.95);">
+  <img src="cd1fd06b-636d-4d90-934a-1afd2ae45ca7.png" class="petal" style="z-index: 3; transform: rotate(-15deg) scale(0.95);">
+  <img src="cd1fd06b-636d-4d90-934a-1afd2ae45ca7.png" class="petal" style="z-index: 4; transform: rotate(30deg) scale(0.92);">
+  <img src="cd1fd06b-636d-4d90-934a-1afd2ae45ca7.png" class="petal" style="z-index: 5; transform: rotate(-30deg) scale(0.92);">
+</div>
 
-       
-        <button class="btn1" id="yesBtn">SI</button>
-        <button class="btn1" id="noBtn">NO</button>
+<div id="message">TE AMO MI LENGUA PEQUEÑITA - CIELO ADRIANA</div>
 
-    </div>
-    <script src="app.js"></script>
+<script>
+  const petals = document.querySelectorAll('.petal');
+  const message = document.getElementById('message');
+  let clickCount = 0;
+
+  document.getElementById('flowerContainer').addEventListener('click', () => {
+    if (clickCount === 0) {
+      petals.forEach((petal, index) => {
+        setTimeout(() => {
+          petal.classList.add('visible');
+        }, index * 300);
+      });
+      clickCount++;
+    } else if (clickCount === 1) {
+      petals.forEach((petal, index) => {
+        setTimeout(() => {
+          petal.classList.remove('visible');
+        }, index * 200);
+      });
+      setTimeout(() => {
+        message.style.opacity = 1;
+      }, petals.length * 200 + 500);
+      clickCount++;
+    } else {
+      // Reinicia si deseas hacerlo cíclico
+      message.style.opacity = 0;
+      clickCount = 0;
+    }
+  });
+</script>
+
 </body>
 </html>
