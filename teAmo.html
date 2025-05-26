@@ -1,27 +1,150 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TE AMO</title>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Poema de Amor</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: linear-gradient(to bottom, #ffe6f0, #fff0f5);
+      font-family: 'Segoe UI', cursive;
+    }
+
+    #cupido {
+      position: absolute;
+      top: 50px;
+      left: 30px;
+      width: 120px;
+      z-index: 10;
+      transition: transform 1s ease-in-out;
+    }
+
+    #arrow {
+      position: absolute;
+      width: 80px;
+      top: 100px;
+      left: 120px;
+      opacity: 0;
+      transition: all 1.2s ease-in-out;
+    }
+
+    .heart, .raindrop {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: red;
+      transform: rotate(45deg);
+    }
+
+    .heart::before, .heart::after,
+    .raindrop::before, .raindrop::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background-color: red;
+      border-radius: 50%;
+    }
+
+    .heart::before, .raindrop::before { top: -10px; left: 0; }
+    .heart::after, .raindrop::after { top: 0; left: -10px; }
+
+    .heart {
+      animation: floatUp 2s ease-out forwards;
+    }
+
+    @keyframes floatUp {
+      to {
+        transform: translateY(-150px) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    .raindrop {
+      opacity: 0.9;
+      animation: fall 4s linear infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-100px) rotate(45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+
+    #poem {
+      position: absolute;
+      bottom: 10%;
+      width: 100%;
+      text-align: center;
+      font-size: 1.5em;
+      color: #c2185b;
+      opacity: 0;
+      transition: opacity 2s ease-in;
+      padding: 0 20px;
+    }
+  </style>
 </head>
 <body>
-    <button class="btn">❤<span class="per">I LOVE YOU 😁</span></button>
-    <div class="contenedor">
-        <p>¿QUIERES SER MI NOVIA?</p>
 
-        <div>
-            <img src="img/gif.gif">
-        </div>
+<!-- Cupido y flecha -->
+<img id="cupido" src="https://cdn-icons-png.flaticon.com/512/2284/2284866.png" alt="Cupido">
+<img id="arrow" src="https://cdn-icons-png.flaticon.com/512/753/753345.png" alt="Flecha">
 
-       
-        <button class="btn1" id="yesBtn">SI</button>
-        <button class="btn1" id="noBtn">NO</button>
+<!-- Poema final -->
+<div id="poem">
+  <p>¿Qué es poesía?, dices mientras clavas<br>
+     en mi pupila tu pupila azul.<br>
+     ¿Qué es poesía? ¿Y tú me lo preguntas?<br>
+     Poesía... eres tú.</p>
+  <p><em>— Gustavo Adolfo Bécquer</em></p>
+</div>
 
-    </div>
-    <script src="app.js"></script>
+<script>
+  let step = 0;
+  const arrow = document.getElementById("arrow");
+  const poem = document.getElementById("poem");
+
+  document.body.addEventListener("click", () => {
+    step++;
+
+    if (step === 1) {
+      // Lanzamiento de flecha
+      arrow.style.opacity = 1;
+      arrow.style.transform = "translate(600px, -100px) rotate(20deg)";
+    }
+
+    else if (step === 2) {
+      // Explosión de corazones
+      for (let i = 0; i < 20; i++) {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.style.left = `${600 + Math.random() * 100 - 50}px`;
+        heart.style.top = `${150 + Math.random() * 30}px`;
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 2000);
+      }
+    }
+
+    else if (step === 3) {
+      // Lluvia de corazones
+      for (let i = 0; i < 100; i++) {
+        const drop = document.createElement("div");
+        drop.className = "raindrop";
+        drop.style.left = `${Math.random() * window.innerWidth}px`;
+        drop.style.animationDelay = `${Math.random() * 4}s`;
+        document.body.appendChild(drop);
+      }
+      // Mostrar poema
+      poem.style.opacity = 1;
+    }
+  });
+</script>
+
 </body>
 </html>
