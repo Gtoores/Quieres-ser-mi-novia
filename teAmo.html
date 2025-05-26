@@ -1,27 +1,115 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TE AMO</title>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Te Amo Infinito</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: #000;
+      color: #ff4da6;
+      font-family: 'Segoe UI', cursive;
+    }
+
+    .teamo {
+      position: absolute;
+      color: #ff4da6;
+      font-size: 16px;
+      pointer-events: none;
+      user-select: none;
+      animation: rain 10s linear infinite;
+    }
+
+    @keyframes rain {
+      0% {
+        transform: translateY(-10vh);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(110vh);
+        opacity: 0;
+      }
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+    }
+  </style>
 </head>
 <body>
-    <button class="btn">❤<span class="per">I LOVE YOU 😁</span></button>
-    <div class="contenedor">
-        <p>¿QUIERES SER MI NOVIA?</p>
 
-        <div>
-            <img src="img/gif.gif">
-        </div>
+<canvas id="canvas"></canvas>
 
-       
-        <button class="btn1" id="yesBtn">SI</button>
-        <button class="btn1" id="noBtn">NO</button>
+<script>
+  const body = document.body;
+  const canvas = document.getElementById("canvas");
+  const ctx = canvas.getContext("2d");
+  canvas.width = innerWidth;
+  canvas.height = innerHeight;
 
-    </div>
-    <script src="app.js"></script>
+  // Crear muchos “Te amo” como lluvia
+  for (let i = 0; i < 100; i++) {
+    const span = document.createElement("span");
+    span.classList.add("teamo");
+    span.textContent = "Te amo";
+    span.style.left = `${Math.random() * 100}%`;
+    span.style.top = `${Math.random() * -100}vh`;
+    span.style.fontSize = `${12 + Math.random() * 20}px`;
+    span.style.animationDuration = `${5 + Math.random() * 5}s`;
+    span.style.animationDelay = `${Math.random() * 10}s`;
+    body.appendChild(span);
+  }
+
+  // Partículas al hacer clic
+  const particles = [];
+  body.addEventListener("click", (e) => {
+    const colors = ["#ff4da6", "#ff66cc", "#ff99cc", "#ff1a75"];
+    for (let i = 0; i < 30; i++) {
+      particles.push({
+        x: e.clientX,
+        y: e.clientY,
+        radius: Math.random() * 4 + 2,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        dx: (Math.random() - 0.5) * 8,
+        dy: (Math.random() - 0.5) * 8,
+        life: 60
+      });
+    }
+  });
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach((p, i) => {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.fill();
+      p.x += p.dx;
+      p.y += p.dy;
+      p.life--;
+      if (p.life <= 0) particles.splice(i, 1);
+    });
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+
+  window.addEventListener("resize", () => {
+    canvas.width = innerWidth;
+    canvas.height = innerHeight;
+  });
+</script>
+
 </body>
 </html>
