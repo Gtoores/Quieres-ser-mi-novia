@@ -1,27 +1,150 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TE AMO</title>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <button class="btn">❤<span class="per">I LOVE YOU 😁</span></button>
-    <div class="contenedor">
-        <p>¿QUIERES SER MI NOVIA?</p>
+  <meta charset="UTF-8">
+  <title>Winnie te ama</title>
+  <style>
+    body {
+      background: #fff3cd;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
 
-        <div>
-            <img src="img/gif.gif">
-        </div>
+    .pooh {
+      position: relative;
+      width: 200px;
+      height: 300px;
+    }
 
-       
-        <button class="btn1" id="yesBtn">SI</button>
-        <button class="btn1" id="noBtn">NO</button>
+    .head, .ear, .body, .arm, .leg {
+      position: absolute;
+      background: #fcd23c;
+      border-radius: 50%;
+    }
 
-    </div>
-    <script src="app.js"></script>
-</body>
-</html>
+    .head {
+      width: 120px;
+      height: 120px;
+      top: 0;
+      left: 40px;
+    }
+
+    .ear {
+      width: 40px;
+      height: 40px;
+      top: -10px;
+    }
+
+    .ear.left {
+      left: 20px;
+    }
+
+    .ear.right {
+      right: 20px;
+    }
+
+    .body {
+      width: 140px;
+      height: 160px;
+      top: 110px;
+      left: 30px;
+      background: #fcd23c;
+    }
+
+    .arm {
+      width: 40px;
+      height: 80px;
+      top: 120px;
+      background: #fcd23c;
+    }
+
+    .arm.left {
+      left: -10px;
+      transform: rotate(-30deg);
+    }
+
+    .arm.right {
+      right: -10px;
+      transform: rotate(30deg);
+    }
+
+    .leg {
+      width: 40px;
+      height: 60px;
+      bottom: 0;
+      background: #fcd23c;
+    }
+
+    .leg.left {
+      left: 40px;
+    }
+
+    .leg.right {
+      right: 40px;
+    }
+
+    .shirt {
+      position: absolute;
+      top: 100px;
+      left: 30px;
+      width: 140px;
+      height: 60px;
+      background: #d62828;
+      border-top-left-radius: 70px;
+      border-top-right-radius: 70px;
+      z-index: 1;
+    }
+
+    .face {
+      position: absolute;
+      top: 40px;
+      left: 60px;
+      width: 80px;
+      height: 40px;
+    }
+
+    .eye {
+      width: 10px;
+      height: 10px;
+      background: #000;
+      border-radius: 50%;
+      position: absolute;
+      top: 0;
+    }
+
+    .eye.left {
+      left: 10px;
+    }
+
+    .eye.right {
+      right: 10px;
+    }
+
+    .nose {
+      position: absolute;
+      top: 20px;
+      left: 35px;
+      width: 10px;
+      height: 6px;
+      background: #000;
+      border-radius: 50%;
+    }
+
+    .sign {
+      position: absolute;
+      top: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #fff;
+      border: 2px solid #444;
+      padding: 10px 20px;
+      border-radius: 8px;
+      z-index: 5;
+      font-size: 20px;
+      font-weight: bold;
+      colo
+
+        
