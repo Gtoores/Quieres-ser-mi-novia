@@ -1,27 +1,47 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TE AMO</title>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Imagen Pixelada con Clic</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #222;
+    }
+
+    .container {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .pixel-image {
+      width: 300px;
+      height: auto;
+      image-rendering: pixelated;
+      transform: scale(0.1);
+      transition: transform 0.5s ease, image-rendering 0.5s ease;
+    }
+
+    .clear {
+      transform: scale(1);
+      image-rendering: auto;
+    }
+  </style>
 </head>
 <body>
-    <button class="btn">❤<span class="per">I LOVE YOU 😁</span></button>
-    <div class="contenedor">
-        <p>¿QUIERES SER MI NOVIA?</p>
+  <div class="container" onclick="revealImage()">
+    <img id="photo" src="1bd12d9d-f2c5-45f8-85fc-54eb3aad7992.png" class="pixel-image" alt="Imagen pixelada">
+  </div>
 
-        <div>
-            <img src="img/gif.gif">
-        </div>
-
-       
-        <button class="btn1" id="yesBtn">SI</button>
-        <button class="btn1" id="noBtn">NO</button>
-
-    </div>
-    <script src="app.js"></script>
+  <script>
+    function revealImage() {
+      const img = document.getElementById("photo");
+      img.classList.add("clear");
+    }
+  </script>
 </body>
 </html>
