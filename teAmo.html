@@ -1,27 +1,62 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TE AMO</title>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Catarata de Te Amo Cielo</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      height: 100%;
+      background: linear-gradient(to bottom, #fff0f5, #ffc1d6);
+      font-family: "Comic Sans MS", cursive;
+    }
+
+    .container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .columna {
+      width: auto;
+      flex: none;
+      position: relative;
+      height: 100%;
+    }
+
+    .frase {
+      position: absolute;
+      top: -50px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 24px;
+      font-weight: bold;
+      white-space: nowrap;
+      color: #e91e63;
+      text-shadow: 1px 1px 3px white;
+      animation: caer 6s linear forwards;
+      opacity: 0.8;
+    }
+
+    @keyframes caer {
+      0% {
+        transform: translateX(-50%) translateY(-100px);
+        opacity: 0.7;
+      }
+      100% {
+        transform: translateX(-50%) translateY(110vh);
+        opacity: 0;
+      }
+    }
+  </style>
 </head>
 <body>
-    <button class="btn">❤<span class="per">I LOVE YOU 😁</span></button>
-    <div class="contenedor">
-        <p>¿QUIERES SER MI NOVIA?</p>
+  <div class="container" id="catarata"></div>
 
-        <div>
-            <img src="img/gif.gif">
-        </div>
-
-       
-        <button class="btn1" id="yesBtn">SI</button>
-        <button class="btn1" id="noBtn">NO</button>
-
-    </div>
-    <script src="app.js"></script>
-</body>
-</html>
+  <script>
