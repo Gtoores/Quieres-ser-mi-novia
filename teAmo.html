@@ -1,27 +1,75 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TE AMO</title>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Catarata de Te Amo Cielo</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: radial-gradient(circle, #ffe6f0, #ffc1d6);
+      font-family: 'Comic Sans MS', cursive;
+    }
+
+    .container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .teamo {
+      position: absolute;
+      top: -50px;
+      white-space: nowrap;
+      color: #e91e63;
+      font-weight: bold;
+      text-shadow: 1px 1px 2px #fff;
+      animation-name: fall;
+      animation-timing-function: linear;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-50px);
+        opacity: 0.5;
+      }
+      100% {
+        transform: translateY(110vh);
+        opacity: 0;
+      }
+    }
+  </style>
 </head>
 <body>
-    <button class="btn">❤<span class="per">I LOVE YOU 😁</span></button>
-    <div class="contenedor">
-        <p>¿QUIERES SER MI NOVIA?</p>
+  <div class="container" id="catarata"></div>
 
-        <div>
-            <img src="img/gif.gif">
-        </div>
+  <script>
+    const container = document.getElementById("catarata");
+    const frases = ["Te amo cielo", "💖 Te amo 💖", "✨ Te amo cielo ✨"];
+    const colores = ["#e91e63", "#d81b60", "#ad1457", "#f06292"];
 
-       
-        <button class="btn1" id="yesBtn">SI</button>
-        <button class="btn1" id="noBtn">NO</button>
+    function crearFrase() {
+      const span = document.createElement("span");
+      span.className = "teamo";
+      span.innerText = frases[Math.floor(Math.random() * frases.length)];
+      span.style.left = Math.random() * window.innerWidth + "px";
+      span.style.fontSize = 16 + Math.random() * 24 + "px";
+      span.style.zIndex = Math.random() < 0.5 ? 1 : 10; // profundidad
+      span.style.color = colores[Math.floor(Math.random() * colores.length)];
+      span.style.animationDuration = 3 + Math.random() * 5 + "s";
 
-    </div>
-    <script src="app.js"></script>
+      container.appendChild(span);
+
+      setTimeout(() => {
+        container.removeChild(span);
+      }, 9000);
+    }
+
+    setInterval(crearFrase, 150); // velocidad de caída
+  </script>
 </body>
 </html>
